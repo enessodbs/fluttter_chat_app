@@ -1,4 +1,4 @@
-import 'package:chat_app/auth_service/auth_service.dart';
+import 'package:chat_app/services/auth_service/auth_service.dart';
 import 'package:chat_app/pages/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +8,12 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _logout() {
+    void logout() {
       //auth logout function
-      final AuthService _auth = AuthService();
+      final AuthService auth = AuthService();
 
       try {
-        _auth.signOut();
+        auth.signOut();
       } catch (e) {
         showDialog(
           context: context,
@@ -82,7 +82,7 @@ class MyDrawer extends StatelessWidget {
                 "L O G O U T",
               ),
               leading: Icon(Icons.logout),
-              onTap: _logout,
+              onTap: logout,
             ),
           ),
         ],

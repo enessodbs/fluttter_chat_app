@@ -1,4 +1,4 @@
-import 'package:chat_app/auth_service/auth_service.dart';
+import 'package:chat_app/services/auth_service/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -14,18 +14,18 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   //Email and password controllers
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   void _register(BuildContext context) {
     //auth service register function
-    final AuthService _auth = AuthService();
+    final AuthService auth = AuthService();
 
     //passwrod match check -> create user
     if (_passwordController.text == _confirmPasswordController.text) {
       try {
-        _auth.registerWithEmailAndPassword(
+        auth.registerWithEmailAndPassword(
             _emailController.text, _passwordController.text);
       } catch (e) {
         showDialog(

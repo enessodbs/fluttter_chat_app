@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:chat_app/auth_service/auth_service.dart';
+import 'package:chat_app/services/auth_service/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +8,9 @@ class LoginPage extends StatefulWidget {
   final Function()? register;
 
   const LoginPage({
-    Key? key,
+    super.key,
     required this.register,
-  }) : super(key: key);
+  });
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -18,15 +18,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   //Email and password controllers
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   void _login(BuildContext context) {
     //Auth service login function
-    final AuthService _auth = AuthService();
+    final AuthService auth = AuthService();
 
     try {
-      _auth.signInWithEmailAndPassword(
+      auth.signInWithEmailAndPassword(
           _emailController.text, _passwordController.text);
     } catch (e) {
       showDialog(

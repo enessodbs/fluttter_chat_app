@@ -7,11 +7,11 @@ class MyTextfield extends StatelessWidget {
   final bool obbscureText;
   final TextEditingController controller;
   const MyTextfield({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.obbscureText,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
