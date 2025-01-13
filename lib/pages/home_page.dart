@@ -21,8 +21,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: const Text("Home", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
+        title: const Text(
+          "Home",
+        ),
         centerTitle: true,
       ),
       drawer: MyDrawer(),
@@ -47,10 +51,12 @@ class _HomePageState extends State<HomePage> {
           );
         }
         //return list view
-        return ListView(
-          children: snapshot.data!
-              .map<Widget>((userData) => _buildUserListItem(userData, context))
-              .toList(),
+        return Container(
+          child: ListView(
+            children: snapshot.data!
+                .map<Widget>((userData) => _buildUserListItem(userData, context))
+                .toList(),
+          ),
         );
       },
     );
