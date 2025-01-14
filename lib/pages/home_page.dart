@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         foregroundColor: Colors.grey,
         elevation: 0,
         title: const Text(
-          "Home",
+          "U S E R S",
         ),
         centerTitle: true,
       ),
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildUserList() {
     return StreamBuilder(
-      stream: _chatService.getUsersStream(),
+      stream: _chatService.getUsersExceptBlocked(),
       builder: (context, snapshot) {
         //error
         if (snapshot.hasError) {
@@ -51,12 +51,10 @@ class _HomePageState extends State<HomePage> {
           );
         }
         //return list view
-        return Container(
-          child: ListView(
-            children: snapshot.data!
-                .map<Widget>((userData) => _buildUserListItem(userData, context))
-                .toList(),
-          ),
+        return ListView(
+          children: snapshot.data!
+              .map<Widget>((userData) => _buildUserListItem(userData, context))
+              .toList(),
         );
       },
     );

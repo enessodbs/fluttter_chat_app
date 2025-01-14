@@ -1,5 +1,4 @@
 import 'package:chat_app/services/auth_service/auth_gate.dart';
-import 'package:chat_app/themes/light_mode.dart';
 import 'package:chat_app/themes/themes_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/blocked_users_page.dart';
 import 'package:chat_app/themes/themes_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,32 +25,67 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Theme.of(context).colorScheme.secondary,
-        ),
-        margin: EdgeInsets.all(25),
-        padding: EdgeInsets.all(16),
-        child: Row(
-          children: [
-            //dark mode
-            Text(
-              "Dark Mode",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
+      body: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Theme.of(context).colorScheme.secondary,
             ),
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+            padding: EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //dark mode
+                Text(
+                  "Dark Mode",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                ),
 
-            //switch toggle
-            CupertinoSwitch(
-              value: Provider.of<ThemesProvider>(context, listen: false).isDark,
-              onChanged: (value) =>
-                  Provider.of<ThemesProvider>(context, listen: false)
-                      .toggleTheme(),
-            )
-          ],
-        ),
+                //switch toggle
+                CupertinoSwitch(
+                  value: Provider.of<ThemesProvider>(context, listen: false)
+                      .isDark,
+                  onChanged: (value) =>
+                      Provider.of<ThemesProvider>(context, listen: false)
+                          .toggleTheme(),
+                )
+              ],
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+            padding: EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //dark mode
+                Text(
+                  "Blocked Users",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                ),
+
+                //navigate to blocked users page
+                IconButton(
+                    onPressed: () => Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => BlockedUsersPage(),
+                        )),
+                    icon: Icon(Icons.arrow_forward_rounded))
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,13 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:chat_app/components/chat_bubble.dart';
 import 'package:chat_app/components/my_textfield.dart';
-import 'package:chat_app/themes/themes_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'package:chat_app/services/auth_service/auth_service.dart';
 import 'package:chat_app/services/chat_service/chat_service.dart';
-import 'package:provider/provider.dart';
 
 class ChatPage extends StatefulWidget {
   final String receiverEmail;
@@ -25,12 +22,11 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   //textfield focus
 
-  FocusNode _focusNode = FocusNode();
-  ScrollController _scrollController = ScrollController();
+  final FocusNode _focusNode = FocusNode();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _focusNode.addListener(() {
@@ -61,7 +57,6 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _focusNode.dispose();
     _messageController.dispose();
@@ -137,8 +132,12 @@ class _ChatPageState extends State<ChatPage> {
 
     return Container(
         alignment: alignment,
-        child:
-            ChatBubble(message: data["message"], isCurrentUser: isCurrentUser));
+        child: ChatBubble(
+          message: data["message"],
+          isCurrentUser: isCurrentUser,
+          messageID: doc.id,
+          userID: data['senderID'],
+        ));
   }
 
   Widget _buildUserInput() {
